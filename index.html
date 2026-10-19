@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>釜山家族行 10/22–10/26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 版面：手機優先的單欄行程手冊；頂部日期導覽 sticky，每天一張時間表，像港口時刻表 */
+:root{
+  --bg:#f3f6f8; --paper:#ffffff; --ink:#14212b; --muted:#5a6b78; --line:#d6e0e6;
+  --sea:#0e5a7a; --sea-soft:#e1eef4; --buoy:#e2572b; --buoy-soft:#fbe7df;
+  --ok:#1f7a4d; --ok-soft:#e0f2e8; --ask:#9a6a00; --ask-soft:#fbf0d6;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d171e; --paper:#13212b; --ink:#e5edf2; --muted:#93a6b3; --line:#24394a;
+  --sea:#6cc0e0; --sea-soft:#163345; --buoy:#ff8a5c; --buoy-soft:#3a2219;
+  --ok:#6fd3a0; --ok-soft:#173327; --ask:#f0c45a; --ask-soft:#352a12; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d171e; --paper:#13212b; --ink:#e5edf2; --muted:#93a6b3; --line:#24394a;
+  --sea:#6cc0e0; --sea-soft:#163345; --buoy:#ff8a5c; --buoy-soft:#3a2219;
+  --ok:#6fd3a0; --ok-soft:#173327; --ask:#f0c45a; --ask-soft:#352a12; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+a{color:var(--sea)}
+header.hero{padding-block:36px 20px;display:grid;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--sea);text-transform:uppercase}
+header.hero h1{font-size:clamp(28px,6vw,44px);font-weight:900;line-height:1.2}
+header.hero p{margin:0;color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.fact{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px}
+.fact b{font-family:var(--f-mono);font-weight:500;color:var(--sea)}
+
+nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  display:flex;gap:6px;overflow-x:auto;padding-block:10px;margin-inline:-16px;padding-inline:16px}
+nav.days a{flex:0 0 auto;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+  border-radius:999px;padding:5px 12px;font-size:13px;white-space:nowrap}
+nav.days a:hover,nav.days a:focus-visible{border-color:var(--sea);color:var(--sea);outline:none}
+
+section{padding-block:28px 4px;scroll-margin-top:60px}
+section > h2{font-size:24px;font-weight:900;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+section > h2 .d{font-family:var(--f-mono);font-size:15px;font-weight:500;color:var(--buoy)}
+.lede{color:var(--muted);margin:6px 0 14px;max-width:65ch}
+
+.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;letter-spacing:.06em;color:var(--muted);font-weight:500;background:var(--sea-soft)}
+td.t{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--sea);width:76px}
+td.go{color:var(--muted);font-size:13px;min-width:170px}
+td.what b{font-weight:700}
+.ko{display:block;font-size:12px;color:var(--muted)}
+tr.key td{background:var(--buoy-soft)}
+tr.move td.what{color:var(--muted)}
+.chip{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;white-space:nowrap}
+.c-ok{background:var(--ok-soft);color:var(--ok)}
+.c-ask{background:var(--ask-soft);color:var(--ask)}
+.c-free{background:var(--sea-soft);color:var(--sea)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.card h3{font-size:17px;margin-bottom:6px}
+.card ul{margin:0;padding-left:1.2em}
+.card li{margin:2px 0}
+.note{border-left:3px solid var(--buoy);background:var(--paper);padding:10px 14px;margin:12px 0;border-radius:0 6px 6px 0;font-size:14px}
+
+.taxi{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.tx{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0}
+.tx span{min-width:0}
+.tx .k{font-size:17px;font-weight:700;display:block;word-break:keep-all;overflow-wrap:anywhere}
+.tx .z{font-size:12px;color:var(--muted)}
+.tx button{flex:0 0 auto;font:inherit;font-size:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:4px 8px;cursor:pointer}
+.tx button:focus-visible{outline:2px solid var(--sea)}
+
+.check li{list-style:none;margin:4px 0}
+.check{padding-left:0}
+.check li::before{content:"☐ ";color:var(--sea)}
+footer{margin-top:36px;color:var(--muted);font-size:12px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+</head><body style="margin:0"><div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Busan · 2026.10.22 – 10.26 · 3 人</div>
+  <h1>釜山家族行 行程手冊</h1>
+  <p>4 晚都住凡內谷的獵犬飯店。釜山 Pass 48 小時從 10/23 16:30 搭鑽石遊艇時開卡，用到 10/25 16:30。每一列都寫了怎麼過去，計程車用的韓文地名在最下面，可以直接拿給司機看。</p>
+  <div class="facts">
+    <span class="fact">去程 <b>10/22 18:00</b> 抵達金海機場</span>
+    <span class="fact">回程 <b>10/26 12:00</b> 起飛</span>
+    <span class="fact">Pass <b>10/23 16:30 → 10/25 16:30</b></span>
+    <span class="fact">日落 約 <b>17:30</b></span>
+  </div>
+</header>
+
+<nav class="days" aria-label="跳到日期">
+  <a href="#prep">出發前</a><a href="#d1">10/22 四</a><a href="#d2">10/23 五</a><a href="#d3">10/24 六</a><a href="#d4">10/25 日</a><a href="#d5">10/26 一</a><a href="#stay">住・衣・行</a><a href="#food">吃</a><a href="#taxi">給司機看</a>
+</nav>
+
+<section id="prep">
+  <h2>出發前要辦好</h2>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>預約・購買</h3><ul class="check">
+      <li>釜山 Pass：比較 48 小時版和 BIG5（任選 5 個），看哪個便宜</li>
+      <li>鑽石灣遊艇 10/23 16:30 班次（開卡第一站）</li>
+      <li>天空膠囊 10/25 15:30，青沙浦出發 ✔ 已訂</li>
+      <li>獵犬飯店凡川店：選 3 人房型（豪華雙床房或尊爵套房）</li>
+    </ul></div>
+    <div class="card"><h3>要確認的事</h3><ul class="check">
+      <li>在 Pass APP 確認：鑽石遊艇、滑車、釜山塔、汗蒸幕有沒有包含</li>
+      <li>女兒年紀能不能進 Spaland（有年齡限制），不行就改去 Clubd Oasis</li>
+      <li>問醫美診所：做完音波幾天後可以進汗蒸幕</li>
+      <li>手機裝 Kakao T（叫車）、Naver Map（導航）</li>
+    </ul></div>
+  </div>
+  <p class="note">表格裡 <span class="chip c-ok">Pass ✅</span> 是查到 2026 年確定有包含；<span class="chip c-ask">Pass ❓</span> 是印象中有，要在 APP 確認；<span class="chip c-free">免費</span> 不用門票。</p>
+</section>
+
+<section id="d1">
+  <h2><span class="d">10/22（四）</span>抵達・西面晚餐</h2>
+  <p class="lede">今天只負責平安入住、吃一頓好的。帶行李跟小孩，機場直接搭計程車最省事。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="t">18:00</td><td class="what"><b>金海機場落地</b><span class="ko">김해국제공항</span></td><td class="go">—</td><td></td><td>入境、領行李約 45 分鐘</td></tr>
+      <tr class="move"><td class="t">18:45</td><td class="what">機場 → 飯店</td><td class="go">🚕 計程車 30–40 分，約 ₩20,000–25,000</td><td></td><td>出口有排班計程車，把韓文地址拿給司機看</td></tr>
+      <tr><td class="t">19:30</td><td class="what"><b>入住 獵犬飯店凡川店</b><span class="ko">하운드호텔 서면범천</span></td><td class="go">—</td><td></td><td>入住時間 16:00 起</td></tr>
+      <tr class="move"><td class="t">20:00</td><td class="what">飯店 → 西面</td><td class="go">🚇 凡內谷站 1 號線，坐 1 站到西面；或走路 12–15 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">20:15</td><td class="what"><b>晚餐：西面豬肉湯飯街，或西面 1 番街烤肉</b><span class="ko">서면 돼지국밥골목 · 서면1번가</span></td><td class="go">—</td><td></td><td>吃完在便利商店買 T-money 交通卡、儲值 ₩20,000–30,000／人</td></tr>
+      <tr class="move"><td class="t">21:30</td><td class="what">回飯店</td><td class="go">🚇 1 號線 1 站，或走路</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="d2">
+  <h2><span class="d">10/23（五）</span>西面醫美・鑽石遊艇開卡・廣安里夜景</h2>
+  <p class="lede">早上老婆在西面做醫美（臉部音波），你跟女兒在附近逛。下午回飯店休息，傍晚搭遊艇開卡。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="t">08:30</td><td class="what">早餐</td><td class="go">飯店附近，或西面的咖啡廳</td><td></td><td></td></tr>
+      <tr class="move"><td class="t">09:40</td><td class="what">全家出發到西面</td><td class="go">🚇 凡內谷 → 西面 1 站；或走路 12–15 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">10:00</td><td class="what"><b>老婆：醫美（10:00–13:00）</b></td><td class="go">—</td><td></td><td>做完防曬、帽子；這幾天少喝酒，不進汗蒸房</td></tr>
+      <tr><td class="t">10:00</td><td class="what"><b>父女：釜山市民公園</b><span class="ko">부산시민공원</span></td><td class="go">🚶 西面走路約 15 分；或 🚕 5 分</td><td><span class="chip c-free">免費</span></td><td>大草皮和兒童遊樂場，讓小孩放電</td></tr>
+      <tr><td class="t">11:30</td><td class="what"><b>父女：田浦咖啡街</b><span class="ko">전포카페거리</span></td><td class="go">🚶 公園走過去約 15 分</td><td></td><td>選一間咖啡廳坐著等，店多數 11:00–12:00 開</td></tr>
+      <tr class="key"><td class="t">13:00</td><td class="what"><b>會合・午餐</b>（西面）</td><td class="go">🚶 田浦到西面約 10 分</td><td></td><td>老婆剛做完，挑不辣、不燙的，例如湯飯、韓式定食</td></tr>
+      <tr class="move"><td class="t">14:00</td><td class="what">回飯店休息</td><td class="go">🚇 1 號線 1 站</td><td></td><td>讓老婆冰敷、休息</td></tr>
+      <tr class="move"><td class="t">15:45</td><td class="what">飯店 → 鑽石灣碼頭</td><td class="go">🚕 計程車約 30 分（週五傍晚可能塞車）</td><td></td><td>最晚 15:45 出發</td></tr>
+      <tr class="key"><td class="t">16:30</td><td class="what"><b>鑽石灣遊艇（Diamond Bay）・在這裡開卡</b><span class="ko">다이아몬드베이 요트</span></td><td class="go">—</td><td><span class="chip c-ask">Pass ❓</span></td><td>約 1 小時；甲板風大，帶外套。Pass 48 小時從這裡開始算</td></tr>
+      <tr class="move"><td class="t">17:45</td><td class="what">碼頭 → 廣安里</td><td class="go">🚕 計程車約 15 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">18:00</td><td class="what"><b>廣安里海灘・晚餐・看廣安大橋亮燈</b><span class="ko">광안리해수욕장</span></td><td class="go">—</td><td><span class="chip c-free">免費</span></td><td>海邊整排生魚片、烤貝、咖啡廳，選一間能看海的</td></tr>
+      <tr class="move"><td class="t">20:30</td><td class="what">廣安里 → 飯店</td><td class="go">🚕 約 20 分；或 🚇 2 號線到西面轉 1 號線，約 35 分</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="d3">
+  <h2><span class="d">10/24（六）</span>南線吃逛・X the Sky 日落・汗蒸幕</h2>
+  <p class="lede">整趟最滿的一天。早上去松島和甘川，中午在南浦吃到下午，16:15 一定要出發去海雲台趕日落。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="t">07:45</td><td class="what">早餐</td><td class="go">飯店附近</td><td></td><td></td></tr>
+      <tr class="move"><td class="t">08:30</td><td class="what">飯店 → 松島</td><td class="go">🚕 計程車約 25 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">09:00</td><td class="what"><b>松島海上纜車</b>（選透明底車廂）<span class="ko">송도해상케이블카</span></td><td class="go">—</td><td><span class="chip c-ok">Pass ✅</span></td><td>早上排隊比較少</td></tr>
+      <tr><td class="t">10:00</td><td class="what"><b>松島龍宮雲橋</b><span class="ko">송도용궁구름다리</span></td><td class="go">🚶 纜車另一端走過去</td><td><span class="chip c-free">約 ₩1,000</span></td><td>海上吊橋，拍照點</td></tr>
+      <tr class="move"><td class="t">10:45</td><td class="what">松島 → 甘川</td><td class="go">🚕 計程車約 20 分</td><td></td><td>坡很陡，搭計程車直接到村口</td></tr>
+      <tr class="key"><td class="t">11:00</td><td class="what"><b>甘川文化村</b><span class="ko">감천문화마을</span></td><td class="go">—</td><td><span class="chip c-free">免費</span></td><td>小王子雕像、彩色巷弄；早上人少好拍照。全程上下坡</td></tr>
+      <tr class="move"><td class="t">12:15</td><td class="what">甘川 → 南浦</td><td class="go">🚕 計程車約 15 分，到札嘎其市場</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">12:30</td><td class="what"><b>午餐：札嘎其市場</b><span class="ko">자갈치시장</span></td><td class="go">—</td><td></td><td>一樓挑海鮮、上二樓代煮；或去附近的烤鯖魚巷</td></tr>
+      <tr><td class="t">13:45</td><td class="what"><b>BIFF 廣場吃小吃</b><span class="ko">BIFF광장</span></td><td class="go">🚶 走路 5 分</td><td><span class="chip c-free">免費</span></td><td>堅果糖餅、魚板、辣炒年糕</td></tr>
+      <tr><td class="t">14:15</td><td class="what"><b>國際市場・富平罐頭市場</b><span class="ko">국제시장 · 부평깡통시장</span></td><td class="go">🚶 走路 5 分，兩個市場相連</td><td><span class="chip c-free">免費</span></td><td>零食、乾貨、小吃，買伴手禮</td></tr>
+      <tr><td class="t">15:00</td><td class="what"><b>龍頭山公園・釜山塔</b><span class="ko">용두산공원 · 부산타워</span></td><td class="go">🚶 光復路的戶外手扶梯直接上山</td><td><span class="chip c-ask">Pass ❓</span></td><td>看南浦和港口全景</td></tr>
+      <tr><td class="t">15:40</td><td class="what"><b>光復路・樂天百貨光復店頂樓</b><span class="ko">광복로 · 롯데백화점 광복점</span></td><td class="go">🚶 走下山約 10 分</td><td><span class="chip c-free">免費</span></td><td>頂樓觀景台可以看港口；百貨有廁所、可以休息</td></tr>
+      <tr class="move"><td class="t">16:15</td><td class="what">南浦 → 海雲台 LCT</td><td class="go">🚕 計程車約 40 分（週六可能塞車）</td><td></td><td><b>最晚 16:15 一定要走</b>，地鐵要轉車、約 60 分</td></tr>
+      <tr class="key"><td class="t">17:00</td><td class="what"><b>BUSAN X the SKY</b>（看日落 + 夜景）<span class="ko">부산엑스더스카이 (엘시티)</span></td><td class="go">—</td><td><span class="chip c-ok">Pass ✅</span></td><td>日落約 17:30；塞車趕不上日落也沒關係，夜景一樣漂亮</td></tr>
+      <tr class="move"><td class="t">18:20</td><td class="what">海雲台 → Centum City</td><td class="go">🚇 中洞站或海雲台站搭 2 號線 3–4 站，約 10 分；或 🚕 10 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">18:30</td><td class="what"><b>晚餐：新世界百貨 Centum City</b><span class="ko">신세계 센텀시티</span></td><td class="go">—</td><td></td><td>地下美食街選擇最多</td></tr>
+      <tr><td class="t">19:30</td><td class="what"><b>父女：Spaland 汗蒸幕</b><span class="ko">스파랜드</span><br><b>老婆：逛新世界百貨</b></td><td class="go">🚶 就在百貨裡</td><td><span class="chip c-ask">Pass ❓</span></td><td>只用穿衣服的汗蒸區。女兒年紀不夠就改去海雲台的 Clubd Oasis（穿泳衣）。小孩累了可以直接回飯店</td></tr>
+      <tr class="move"><td class="t">21:30</td><td class="what">Centum City → 飯店</td><td class="go">🚇 2 號線到西面轉 1 號線到凡內谷，約 30 分；或 🚕 約 25 分</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="d4">
+  <h2><span class="d">10/25（日）</span>龍宮寺・滑車・海岸列車・天空膠囊</h2>
+  <p class="lede">從最遠的機張開始，一路往海雲台玩回來，不走回頭路。Pass 16:30 到期，膠囊 15:30 出發剛好來得及。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="t">08:00</td><td class="what">早餐</td><td class="go">飯店附近</td><td></td><td></td></tr>
+      <tr class="move"><td class="t">08:45</td><td class="what">飯店 → 海東龍宮寺</td><td class="go">🚕 計程車 40–50 分，約 ₩30,000</td><td></td><td>地鐵加東海線要約 1 小時、轉 2 次</td></tr>
+      <tr class="key"><td class="t">09:30</td><td class="what"><b>海東龍宮寺</b><span class="ko">해동용궁사</span></td><td class="go">—</td><td><span class="chip c-free">免費</span></td><td>蓋在海邊岩石上的寺廟；週日人多，早到比較好</td></tr>
+      <tr class="move"><td class="t">10:30</td><td class="what">龍宮寺 → 滑車</td><td class="go">🚕 計程車約 5 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">10:45</td><td class="what"><b>Skyline Luge 斜坡滑車</b><span class="ko">스카이라인 루지 부산</span></td><td class="go">—</td><td><span class="chip c-ask">Pass ❓</span></td><td>有身高限制，太小要跟大人同坐；時間夠可以多玩幾趟</td></tr>
+      <tr class="move"><td class="t">12:00</td><td class="what">滑車 → 青沙浦</td><td class="go">🚕 計程車 10–15 分</td><td></td><td></td></tr>
+      <tr class="key"><td class="t">12:15</td><td class="what"><b>午餐：青沙浦烤貝類</b><span class="ko">청사포 조개구이</span></td><td class="go">—</td><td></td><td>海邊一整排烤貝店</td></tr>
+      <tr><td class="t">13:30</td><td class="what"><b>青沙浦雙色燈塔・踏石展望台</b><span class="ko">청사포 다릿돌전망대</span></td><td class="go">🚶 走路 5–10 分</td><td><span class="chip c-free">免費</span></td><td>海上的玻璃步道</td></tr>
+      <tr class="key"><td class="t">14:00</td><td class="what"><b>海岸列車：青沙浦 → 松亭</b><span class="ko">블루라인파크 해변열차</span></td><td class="go">🚆 青沙浦站上車，約 10 分</td><td><span class="chip c-ok">Pass ✅</span></td><td>這段跟膠囊走的路線不同，風景不重複</td></tr>
+      <tr><td class="t">14:15</td><td class="what"><b>松亭海灘散步・喝咖啡</b><span class="ko">송정해수욕장</span></td><td class="go">🚶</td><td><span class="chip c-free">免費</span></td><td></td></tr>
+      <tr class="move"><td class="t">14:50</td><td class="what">海岸列車：松亭 → 青沙浦</td><td class="go">🚆 約 10 分</td><td><span class="chip c-ok">Pass ✅</span></td><td></td></tr>
+      <tr><td class="t">15:15</td><td class="what">到青沙浦膠囊站報到</td><td class="go">🚶</td><td></td><td>提早 10–15 分鐘到</td></tr>
+      <tr class="key"><td class="t">15:30</td><td class="what"><b>天空膠囊：青沙浦 → 尾浦</b>（已訂）<span class="ko">블루라인파크 스카이캡슐</span></td><td class="go">🚡 約 30 分</td><td><span class="chip c-ok">Pass ✅</span></td><td>整個車廂只有你們家。Pass 16:30 到期</td></tr>
+      <tr><td class="t">16:15</td><td class="what"><b>海雲台海灘散步・看夕陽</b><span class="ko">해운대해수욕장</span></td><td class="go">🚶 尾浦站就在海灘東邊</td><td><span class="chip c-free">免費</span></td><td>日落約 17:30</td></tr>
+      <tr class="key"><td class="t">17:45</td><td class="what"><b>晚餐：海雲台市場</b><span class="ko">해운대시장</span></td><td class="go">🚶 海灘走過去約 5 分</td><td></td><td>辣炒年糕、魚板、海鮮、炸物</td></tr>
+      <tr class="move"><td class="t">19:00</td><td class="what">海雲台 → 飯店</td><td class="go">🚇 海雲台站 2 號線到西面，轉 1 號線到凡內谷，約 45 分；或 🚕 約 35 分</td><td></td><td>晚上把行李整理好</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="d5">
+  <h2><span class="d">10/26（一）</span>返程</h2>
+  <div class="tbl" style="margin-top:12px"><table>
+    <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td class="t">08:00</td><td class="what">早餐・最後整理行李</td><td class="go">飯店附近</td><td></td><td>T-money 餘額可以在機場便利商店用完</td></tr>
+      <tr class="move"><td class="t">08:45</td><td class="what">退房，飯店 → 金海機場國際線</td><td class="go">🚕 計程車 30–40 分（週一早上會塞車，寧可早走）</td><td></td><td>備案：輕軌加 2 號線，約 50 分</td></tr>
+      <tr class="key"><td class="t">09:45</td><td class="what"><b>抵達機場，辦登機、退稅</b></td><td class="go">—</td><td></td><td>國際線起飛前 2 小時到</td></tr>
+      <tr><td class="t">12:00</td><td class="what"><b>起飛</b></td><td class="go">—</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="stay">
+  <h2>住・衣・行</h2>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>住：獵犬飯店凡川店</h3><ul>
+      <li>Hound Hotel Seomyeon-Beomcheon</li>
+      <li>10 Hwangnyeong-daero 7beon-gil, Busanjin-gu</li>
+      <li>凡內谷站（1 號線）走路約 2 分；到西面 1 站</li>
+      <li>入住 16:00；4 晚 10/22–10/26</li>
+      <li>房型：豪華雙床房（一大床加單人床、約 20㎡）或尊爵套房（兩大床、約 56㎡）</li>
+    </ul></div>
+    <div class="card"><h3>衣：10 月下旬的釜山</h3><ul>
+      <li>白天約 20°C，早晚約 13°C，海邊風大</li>
+      <li>洋蔥式穿法：短袖 + 長袖 + 防風薄外套</li>
+      <li>好走的鞋：甘川和龍宮寺都是階梯和坡道</li>
+      <li>老婆：帽子、防曬、保濕（術後）</li>
+      <li>改去 Clubd Oasis 的話要帶泳衣</li>
+    </ul></div>
+    <div class="card"><h3>行：交通</h3><ul>
+      <li><b>T-money 卡</b>：地鐵、公車、部分計程車都能刷，便利商店可以買、儲值</li>
+      <li><b>計程車</b>：3 個人短程常比地鐵快；用 Kakao T 叫車</li>
+      <li><b>地鐵</b>：飯店在 1 號線（往南浦直達）；去海雲台在西面轉 2 號線</li>
+      <li><b>導航</b>：用 Naver Map，Google 地圖在韓國的路線不準</li>
+    </ul></div>
+    <div class="card"><h3>釜山 Pass 用到的景點</h3><ul>
+      <li>10/23：鑽石灣遊艇 ❓</li>
+      <li>10/24：松島纜車 ✅、釜山塔 ❓、X the Sky ✅、汗蒸幕 ❓</li>
+      <li>10/25：滑車 ❓、海岸列車 ✅、天空膠囊 ✅</li>
+      <li>48 小時版查到約 ₩85,000，買之前跟 BIG5 比價</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="food">
+  <h2>吃：每餐在哪裡、吃什麼</h2>
+  <div class="tbl" style="margin-top:12px"><table>
+    <thead><tr><th>日期</th><th>早餐</th><th>午餐</th><th>點心</th><th>晚餐</th></tr></thead>
+    <tbody>
+      <tr><td class="t">10/22</td><td>—</td><td>—</td><td>—</td><td>西面豬肉湯飯，或 1 番街烤肉</td></tr>
+      <tr><td class="t">10/23</td><td>飯店附近</td><td>西面（湯飯、韓式定食，避開太辣）</td><td>田浦咖啡街</td><td>廣安里海邊：生魚片、烤貝</td></tr>
+      <tr><td class="t">10/24</td><td>飯店附近</td><td>札嘎其市場海鮮，或烤鯖魚</td><td>BIFF 廣場堅果糖餅、魚板、辣炒年糕；國際市場小吃</td><td>新世界百貨地下美食街</td></tr>
+      <tr><td class="t">10/25</td><td>飯店附近</td><td>青沙浦烤貝類</td><td>松亭海邊咖啡廳</td><td>海雲台市場</td></tr>
+      <tr><td class="t">10/26</td><td>飯店附近</td><td>機場或飛機上</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>釜山必吃</h3><ul>
+      <li><b>豬肉湯飯</b> 돼지국밥：釜山代表，西面最多</li>
+      <li><b>小麥冷麵</b> 밀면：釜山特有的冷麵</li>
+      <li><b>堅果糖餅</b> 씨앗호떡：BIFF 廣場排隊那攤</li>
+      <li><b>釜山魚板</b> 어묵：三進魚糕、古來思最有名</li>
+      <li><b>烤貝類</b> 조개구이：青沙浦、廣安里</li>
+    </ul></div>
+    <div class="card"><h3>老婆術後這幾天</h3><ul>
+      <li>避開太辣、太燙的食物</li>
+      <li>先不要喝酒</li>
+      <li>不進汗蒸房、不泡澡</li>
+      <li>確切天數以診所說的為準</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="taxi">
+  <h2>給司機看（韓文地名）</h2>
+  <p class="lede">打開這頁，把韓文直接給司機看；也可以按「複製」貼到 Kakao T 或 Naver Map。</p>
+  <div class="taxi" id="taxiList"></div>
+</section>
+
+<footer>依 2026-10-19 的資料整理。Pass 包含哪些景點、營業時間和票價都可能變動，出發前請在 Pass APP 或官網確認。車程是一般估計，週末和尖峰時段會比較久。</footer>
+</div>
+
+<script>
+const places=[
+ ["하운드호텔 서면범천","獵犬飯店凡川店（住宿）"],
+ ["부산 부산진구 황령대로7번길 10","飯店地址"],
+ ["김해국제공항 국제선","金海機場 國際線"],
+ ["부산시민공원","釜山市民公園"],
+ ["전포카페거리","田浦咖啡街"],
+ ["다이아몬드베이","鑽石灣遊艇碼頭"],
+ ["광안리해수욕장","廣安里海灘"],
+ ["송도해상케이블카","松島海上纜車"],
+ ["감천문화마을","甘川文化村"],
+ ["자갈치시장","札嘎其市場"],
+ ["BIFF광장","BIFF 廣場"],
+ ["국제시장","國際市場"],
+ ["용두산공원","龍頭山公園・釜山塔"],
+ ["롯데백화점 광복점","樂天百貨光復店"],
+ ["엘시티 부산엑스더스카이","BUSAN X the SKY（LCT）"],
+ ["신세계 센텀시티","新世界百貨 Centum City"],
+ ["해동용궁사","海東龍宮寺"],
+ ["스카이라인 루지 부산","Skyline Luge 滑車"],
+ ["청사포 정거장","青沙浦站（膠囊、海岸列車）"],
+ ["해운대시장","海雲台市場"]
+];
+const box=document.getElementById("taxiList");
+places.forEach(([k,z])=>{
+  const d=document.createElement("div");d.className="tx";
+  d.innerHTML='<span><span class="k"></span><span class="z"></span></span><button type="button">複製</button>';
+  d.querySelector(".k").textContent=k;d.querySelector(".z").textContent=z;
+  const b=d.querySelector("button");
+  b.addEventListener("click",()=>{
+    const done=()=>{b.textContent="已複製";setTimeout(()=>b.textContent="複製",1500)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(d.querySelector(".k"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="已選取，請長按複製"};
+    try{navigator.clipboard.writeText(k).then(done,fallback)}catch(e){fallback()}
+  });
+  box.appendChild(d);
+});
+</script>
+
+</body></html>
