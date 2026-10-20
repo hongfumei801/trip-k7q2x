@@ -477,6 +477,39 @@ document.querySelectorAll(".wrap .ko").forEach(linkify);
 document.querySelectorAll("#eat b, #d1 b, #d2 b, #d3 b, #d4 b, #d5 b").forEach(b=>{
   if(HANGUL.test(b.textContent)&&!b.closest("a")&&b.children.length===0)linkify(b);
 });
+/* 備案、雨天清單裡的中文地名和散在句子裡的韓文店名也加上地圖連結 */
+const ZH={
+ "SEA LIFE 釜山水族館":"씨라이프 부산아쿠아리움","SEA LIFE 水族館":"씨라이프 부산아쿠아리움",
+ "釜山電影體驗博物館":"부산영화체험박물관","電影博物館":"부산영화체험박물관",
+ "樂天購物中心東釜山店美食街":"롯데몰 동부산점","樂天購物中心東釜山店":"롯데몰 동부산점","樂天購物中心、Outlet 東釜山店":"롯데몰 동부산점",
+ "樂天購物中心":"롯데몰 동부산점","Outlet 東釜山店":"롯데프리미엄아울렛 동부산점","樂天名牌折扣中心 東釜山店":"롯데프리미엄아울렛 동부산점",
+ "Millac The Market":"밀락더마켓","新世界百貨 Centum City 地下美食街":"신세계 센텀시티","新世界百貨 Centum City":"신세계 센텀시티","新世界百貨":"신세계 센텀시티",
+ "南浦地下街":"남포지하상가","西面地下街":"서면지하상가","樂天百貨光復店":"롯데백화점 광복점","樂天百貨釜山本店 地下美食街":"롯데백화점 부산본점","樂天百貨釜山本店":"롯데백화점 부산본점",
+ "Clubd Oasis":"클럽디 오아시스","X the Sky":"부산엑스더스카이","BUSAN X the SKY":"부산엑스더스카이","OPS 海雲台店":"옵스 해운대점",
+ "民樂生魚片中心":"민락회센터","札嘎其市場":"자갈치시장","釜田市場":"부전시장","海雲台市場":"해운대시장","國際市場":"국제시장","富平罐頭市場":"부평깡통시장",
+ "田浦咖啡街":"전포카페거리","海理團路":"해리단길","烤鯖魚巷":"자갈치 고등어구이","Spaland":"스파랜드","釜山塔":"부산타워","機張市場":"기장시장","光復路":"광복로"
+};
+const STOP=new Set(["돼지국밥","밀면","씨앗호떡","어묵","조개구이","낙곱새","항정국밥","유부주머니","인생네컷","치맥","부산"]);
+const keys=Object.keys(ZH).sort((a,b)=>b.length-a.length);
+const RE=new RegExp("("+keys.join("|")+"|[0-9A-Za-z]*[가-힣][가-힣0-9]*)","g");
+function walk(root){
+  const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest("a,script,style,th,td.t,.chip,.ko,h2,h3,nav,.tx,footer")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const nodes=[];while(tw.nextNode())nodes.push(tw.currentNode);
+  nodes.forEach(n=>{
+    const t=n.nodeValue;RE.lastIndex=0;if(!RE.test(t))return;RE.lastIndex=0;
+    const f=document.createDocumentFragment();let last=0,m;
+    while((m=RE.exec(t))){
+      const w=m[0],qy=ZH[w]||w;
+      if(!ZH[w]&&(STOP.has(w)||w.length<3))continue;
+      f.append(t.slice(last,m.index));
+      const a=document.createElement("a");a.className="map";a.href=gmap(qy);a.target="_blank";a.rel="noopener";a.textContent=w+" 📍";f.append(a);
+      last=m.index+w.length;
+    }
+    if(last===0)return;
+    f.append(t.slice(last));n.replaceWith(f);
+  });
+}
+["#d1","#d2","#d3","#d4","#d5","#rain","#eat"].forEach(id=>{const el=document.querySelector(id);if(el)walk(el)});
 </script>
 
 </body></html>
