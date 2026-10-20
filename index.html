@@ -93,6 +93,10 @@ tr.move td.what{color:var(--muted)}
 .check{padding-left:0}
 .check li::before{content:"☐ ";color:var(--sea)}
 footer{margin-top:36px;color:var(--muted);font-size:12px}
+a.map{color:var(--sea);text-decoration:none;border-bottom:1px dotted var(--sea)}
+a.map:hover,a.map:focus-visible{border-bottom-style:solid;outline:none}
+.tx .btns{display:flex;gap:4px;flex:0 0 auto}
+.tx .btns a{font-size:12px;border:1px solid var(--line);background:var(--bg);color:var(--sea);border-radius:4px;padding:4px 7px;text-decoration:none}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
 
@@ -119,7 +123,6 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="grid" style="margin-top:12px">
     <div class="card"><h3>預約・取消</h3><ul class="check">
       <li><b>取消天空膠囊</b>（10/25 15:30），看能不能退費</li>
-      <li>鑽石灣遊艇改訂 <b>10/23 16:30</b> 的班次（只有這班）</li>
       <li>釜山 Pass 48 小時：比較 48 小時版和 BIG5（任選 5 個），看哪個便宜</li>
       <li>醫美診所改約 10/25 12:00 ✔</li>
     </ul></div>
@@ -156,7 +159,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="tbl"><table>
     <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
     <tbody>
-      <tr><td class="t">07:45</td><td class="what">早餐</td><td class="go">飯店附近，或便利商店</td><td></td><td>今天行程緊，簡單吃</td></tr>
+      <tr><td class="t">07:45</td><td class="what"><b>早餐：이삭토스트</b>（Isaac 吐司）<span class="ko">이삭토스트 서면</span></td><td class="go">🚶 西面一帶，用 Naver Map 找最近的分店</td><td></td><td>韓國人氣早餐吐司，快又好吃。備案：파리바게뜨 麵包店、便利商店</td></tr>
       <tr class="move"><td class="t">08:30</td><td class="what">飯店 → 海東龍宮寺</td><td class="go">🚕 計程車 40–50 分，約 ₩30,000</td><td></td><td>地鐵加東海線約 1 小時、要轉 2 次</td></tr>
       <tr class="key"><td class="t">09:15</td><td class="what"><b>海東龍宮寺</b><span class="ko">해동용궁사</span></td><td class="go">—</td><td><span class="chip c-free">免費</span></td><td>蓋在海邊岩石上的寺廟，平日人比較少；入口小吃攤有魚板、糖餅</td></tr>
       <tr class="move"><td class="t">10:15</td><td class="what">龍宮寺 → 滑車</td><td class="go">🚕 計程車約 5 分</td><td></td><td></td></tr>
@@ -188,7 +191,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="tbl"><table>
     <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
     <tbody>
-      <tr><td class="t">07:45</td><td class="what">早餐</td><td class="go">飯店附近</td><td></td><td></td></tr>
+      <tr><td class="t">07:40</td><td class="what"><b>早餐：본죽</b>（Bon 粥）或 <b>김밥천국</b>（紫菜飯捲）<span class="ko">본죽 · 김밥천국</span></td><td class="go">🚶 飯店附近，用 Naver Map 找最近的分店</td><td></td><td>熱粥、紫菜飯捲、拉麵，簡單快速。備案：이삭토스트、파리바게뜨</td></tr>
       <tr class="move"><td class="t">08:30</td><td class="what">飯店 → 松島</td><td class="go">🚕 計程車約 25 分</td><td></td><td></td></tr>
       <tr class="key"><td class="t">09:00</td><td class="what"><b>松島海上纜車</b>（密閉車廂，可選透明底）<span class="ko">송도해상케이블카</span></td><td class="go">—</td><td><span class="chip c-ok">Pass ✅</span></td><td>小雨照開、強風會停；停駛就直接去南浦</td></tr>
       <tr><td class="t">10:00</td><td class="what"><b>松島龍宮雲橋</b><span class="ko">송도용궁구름다리</span></td><td class="go">🚶 纜車另一端走過去</td><td><span class="chip c-free">約 ₩1,000</span></td><td>下雨就跳過</td></tr>
@@ -222,7 +225,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="tbl"><table>
     <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
     <tbody>
-      <tr><td class="t">09:00</td><td class="what">睡晚一點・早餐</td><td class="go">飯店附近</td><td></td><td>前兩天走很多，今天放慢</td></tr>
+      <tr><td class="t">09:00</td><td class="what"><b>睡晚一點・早餐：송정3대국밥</b>（24 小時營業）<span class="ko">송정3대국밥 서면</span></td><td class="go">🚇 凡內谷 1 站到西面，1 號出口湯飯街</td><td></td><td>坐下來好好吃一頓熱湯飯。不想吃太飽就改 스타벅스 等咖啡廳，等一下還要逛釜田市場吃小吃</td></tr>
       <tr class="move"><td class="t">10:00</td><td class="what">飯店 → 釜田市場</td><td class="go">🚇 凡內谷 1 號線坐 2 站到釜田站，約 5 分</td><td></td><td></td></tr>
       <tr class="key"><td class="t">10:10</td><td class="what"><b>釜田市場</b>：釜山最大的傳統市場<span class="ko">부전시장</span></td><td class="go">—</td><td><span class="chip c-rain">有頂棚</span></td><td>邊走邊吃：糖餅、魚板、血腸、煎餅、年糕；可以買韓國海苔、零食</td></tr>
       <tr class="move"><td class="t">11:15</td><td class="what">釜田 → 西面</td><td class="go">🚶 走地下街約 10 分；或 🚇 1 號線 1 站</td><td></td><td></td></tr>
@@ -249,7 +252,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="tbl" style="margin-top:12px"><table>
     <thead><tr><th>時間</th><th>行程</th><th>怎麼去</th><th>Pass</th><th>備註</th></tr></thead>
     <tbody>
-      <tr><td class="t">08:00</td><td class="what">早餐・最後整理行李</td><td class="go">飯店附近</td><td></td><td></td></tr>
+      <tr><td class="t">08:00</td><td class="what"><b>早餐：본죽</b>（Bon 粥）或 <b>파리바게뜨</b>（Paris Baguette）<span class="ko">본죽 · 파리바게뜨</span></td><td class="go">🚶 飯店附近</td><td></td><td>老婆術後隔天，吃粥最溫和。時間不夠就買麵包到機場吃</td></tr>
       <tr class="move"><td class="t">08:45</td><td class="what">退房，飯店 → 金海機場國際線</td><td class="go">🚕 計程車 30–40 分（週一早上會塞車，寧可早走）</td><td></td><td>備案：輕軌加 2 號線，約 50 分</td></tr>
       <tr class="key"><td class="t">09:45</td><td class="what"><b>抵達機場，辦登機、退稅</b></td><td class="go">—</td><td></td><td>國際線起飛前 2 小時到</td></tr>
       <tr><td class="t">12:00</td><td class="what"><b>起飛</b></td><td class="go">—</td><td></td><td></td></tr>
@@ -284,6 +287,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
   <div class="tbl"><table>
     <thead><tr><th>日期・餐</th><th>首選</th><th>備案</th><th>附近的點心</th></tr></thead>
     <tbody>
+      <tr><td class="t">每天早</td><td colspan="3">10/23 <b>이삭토스트</b>・10/24 <b>본죽／김밥천국</b>・10/25 <b>송정3대국밥</b>・10/26 <b>본죽／파리바게뜨</b>（細節見下方「早餐」）</td></tr>
       <tr><td class="t">10/22 晚</td><td><b>송정3대국밥</b> 豬肉湯飯（西面）</td><td>湯飯街上其他家；<b>개미집</b> 辣炒章魚腸鍋（辣）</td><td>西面 1 番街逛逛</td></tr>
       <tr><td class="t">10/23 午</td><td><b>수민이네</b> 烤貝類（青沙浦）</td><td>同一排的其他烤貝店；下雨就去<b>樂天購物中心東釜山店美食街</b></td><td>龍宮寺入口的魚板、糖餅</td></tr>
       <tr><td class="t">10/23 點心</td><td><b>상국이네</b> 辣炒年糕、魚板（海雲台市場）</td><td><b>OPS 海雲台店</b> 麵包、蛋糕</td><td>海理團路咖啡廳</td></tr>
@@ -298,6 +302,15 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
 
   <h3 class="sub">店家清單（依區域）</h3>
   <div class="grid">
+    <div class="card"><h3>早餐（飯店、西面附近）</h3><ul>
+      <li><b>이삭토스트</b>（Isaac Toast）：韓國最有名的早餐吐司連鎖，推薦火腿起司、培根系列 · 10/23</li>
+      <li><b>본죽</b>（Bon Juk）：粥品連鎖，鮑魚粥、南瓜粥，清淡溫和 · 10/24、10/26</li>
+      <li><b>김밥천국</b>：平價紫菜飯捲、拉麵、湯麵，選擇多 · 10/24 備案</li>
+      <li><b>송정3대국밥</b>：24 小時營業的湯飯老店，早上也能坐下來吃 · 10/25</li>
+      <li><b>파리바게뜨</b>、<b>뚜레쥬르</b>：麵包連鎖，最早開門 · 10/26</li>
+      <li><b>便利商店</b>：三角飯糰、香蕉牛奶、泡麵，最快</li>
+      <li>訂房時看一下獵犬飯店有沒有附早餐，有的話最省事</li>
+    </ul></div>
     <div class="card"><h3>西面・釜田（飯店附近）</h3><ul>
       <li><b>송정3대국밥</b>：1946 年開業的豬肉湯飯老店，西面站 1 號出口的湯飯街裡；血腸、白切肉也有名</li>
       <li><b>기장손칼국수</b> <span class="ko">서면시장</span>：西面市場裡的手工刀切麵，鯷魚湯頭，要排隊</li>
@@ -346,7 +359,7 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
       <li><b>海理團路</b>、<b>田浦咖啡街</b>：特色小店、咖啡廳</li>
     </ul></div>
   </div>
-  <p class="note">店名用韓文搜尋最準。下面「給司機看」也收了這些餐廳的韓文名稱，可以直接複製到 Naver Map。</p>
+  <p class="note">藍色虛線底線的韓文名稱都可以點，會直接開 Google 地圖。韓國的 Google 地圖不能導航開車路線，要看詳細路線請用下面「給司機看」裡的 Naver 按鈕。</p>
 </section>
 
 <section id="stay">
@@ -384,14 +397,17 @@ footer{margin-top:36px;color:var(--muted);font-size:12px}
 
 <section id="taxi">
   <h2>給司機看（韓文地名）</h2>
-  <p class="lede">打開這頁，把韓文直接給司機看；也可以按「複製」貼到 Kakao T 或 Naver Map。</p>
+  <p class="lede">把韓文直接給司機看；按 Google 或 Naver 打開地圖，按「複製」可以貼到 Kakao T 叫車。</p>
   <div class="taxi" id="taxiList"></div>
 </section>
 
-<footer>2026-10-20 更新：醫美改到 10/25 12:00，Pass 改用 10/23–10/24，取消天空膠囊，新增雨天備案和吃貨逛街清單；戶外行程集中到天氣較好的 10/23；遊艇改 16:30；吃的改成具體店名加備案。Pass 包含哪些景點、營業時間和票價都可能變動，出發前請在 Pass APP 或官網確認。車程是一般估計，週末、尖峰時段和雨天會比較久。</footer>
+<footer>2026-10-20 更新：醫美改到 10/25 12:00，Pass 改用 10/23–10/24，取消天空膠囊，新增雨天備案和吃貨逛街清單；戶外行程集中到天氣較好的 10/23；遊艇改 16:30；吃的改成具體店名加備案；加上每天早餐。Pass 包含哪些景點、營業時間和票價都可能變動，出發前請在 Pass APP 或官網確認。車程是一般估計，週末、尖峰時段和雨天會比較久。</footer>
 </div>
 
 <script>
+function q(x){x=x.trim();return /부산|김해/.test(x)?x:"부산 "+x}
+function gmap(x){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q(x))}
+function nmap(x){return "https://map.naver.com/p/search/"+encodeURIComponent(q(x))}
 const places=[
  ["하운드호텔 서면범천","獵犬飯店凡川店（住宿）"],
  ["부산 부산진구 황령대로7번길 10","飯店地址"],
@@ -423,6 +439,9 @@ const places=[
  ["송정3대국밥 서면","송정3대국밥（西面）"],
  ["기장손칼국수 서면시장","기장손칼국수（西面市場）"],
  ["춘하추동밀면","춘하추동밀면 小麥冷麵"],
+ ["이삭토스트","이삭토스트 早餐吐司"],
+ ["본죽","본죽 粥品"],
+ ["김밥천국","김밥천국 紫菜飯捲"],
  ["민락회센터","民樂生魚片中心"],
  ["부전시장","釜田市場"],
  ["롯데백화점 부산본점","樂天百貨釜山本店（西面）"],
@@ -433,7 +452,8 @@ const places=[
 const box=document.getElementById("taxiList");
 places.forEach(([k,z])=>{
   const d=document.createElement("div");d.className="tx";
-  d.innerHTML='<span><span class="k"></span><span class="z"></span></span><button type="button">複製</button>';
+  d.innerHTML='<span><span class="k"></span><span class="z"></span></span><span class="btns"><a class="g" target="_blank" rel="noopener">Google</a><a class="n" target="_blank" rel="noopener">Naver</a><button type="button">複製</button></span>';
+  d.querySelector("a.g").href=gmap(k);d.querySelector("a.n").href=nmap(k);
   d.querySelector(".k").textContent=k;d.querySelector(".z").textContent=z;
   const b=d.querySelector("button");
   b.addEventListener("click",()=>{
@@ -442,6 +462,20 @@ places.forEach(([k,z])=>{
     try{navigator.clipboard.writeText(k).then(done,fallback)}catch(e){fallback()}
   });
   box.appendChild(d);
+});
+/* 把表格和清單裡的韓文地名、店名變成 Google 地圖連結 */
+const HANGUL=/[가-힣]/;
+function linkify(el){
+  const parts=el.textContent.split(" · ");el.textContent="";
+  parts.forEach((t,i)=>{
+    if(i)el.append(" · ");
+    if(!HANGUL.test(t)){el.append(t);return}
+    const a=document.createElement("a");a.className="map";a.href=gmap(t);a.target="_blank";a.rel="noopener";a.textContent=t+" 📍";el.append(a);
+  });
+}
+document.querySelectorAll(".wrap .ko").forEach(linkify);
+document.querySelectorAll("#eat b, #d1 b, #d2 b, #d3 b, #d4 b, #d5 b").forEach(b=>{
+  if(HANGUL.test(b.textContent)&&!b.closest("a")&&b.children.length===0)linkify(b);
 });
 </script>
 
