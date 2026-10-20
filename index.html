@@ -470,7 +470,7 @@ function linkify(el){
   parts.forEach((t,i)=>{
     if(i)el.append(" · ");
     if(!HANGUL.test(t)){el.append(t);return}
-    const a=document.createElement("a");a.className="map";a.href=gmap(t);a.target="_blank";a.rel="noopener";a.textContent=t+" 📍";el.append(a);
+    const m=t.match(/[0-9A-Za-z]*[가-힣][가-힣0-9A-Za-z ]*/);const a=document.createElement("a");a.className="map";a.href=gmap(m?m[0]:t);a.target="_blank";a.rel="noopener";a.textContent=t+" 📍";el.append(a);
   });
 }
 document.querySelectorAll(".wrap .ko").forEach(linkify);
